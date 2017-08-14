@@ -1,0 +1,39 @@
+
+<div *ngIf="field">
+    <h2><span jhiTranslate="fuscApp.field.detail.title">Field</span> {{field.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="fuscApp.field.fieldName">Field Name</span></dt>
+        <dd>
+            <span>{{field.fieldName}}</span>
+        </dd>
+        <dt><span jhiTranslate="fuscApp.field.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'fuscApp.FieldStatusType.' + field.status}}">{{field.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="fuscApp.field.mapLink">Map Link</span></dt>
+        <dd>
+            <span>{{field.mapLink}}</span>
+        </dd>
+        <dt><span jhiTranslate="fuscApp.field.owner">Owner</span></dt>
+        <dd>
+            <div *ngIf="field.ownerId">
+                <a [routerLink]="['/club', field.ownerId]">{{field.ownerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'field/'+ field.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

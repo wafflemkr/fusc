@@ -1,0 +1,60 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFieldLabel" jhiTranslate="fuscApp.field.home.createOrEditLabel">Create or edit a Field</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!field.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="field.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="fuscApp.field.fieldName" for="field_fieldName">Field Name</label>
+            <input type="text" class="form-control" name="fieldName" id="field_fieldName"
+                [(ngModel)]="field.fieldName" required maxlength="80" />
+            <div [hidden]="!(editForm.controls.fieldName?.dirty && editForm.controls.fieldName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fieldName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fieldName?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 80 }">
+                   This field cannot be longer than 80 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="fuscApp.field.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="field.status" id="field_status" >
+                <option value="CLOSED" jhiTranslate="fuscApp.FieldStatusType.CLOSED">CLOSED</option>
+                <option value="OPEN" jhiTranslate="fuscApp.FieldStatusType.OPEN">OPEN</option>
+                <option value="PARTIALLY_OPEN" jhiTranslate="fuscApp.FieldStatusType.PARTIALLY_OPEN">PARTIALLY_OPEN</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="fuscApp.field.mapLink" for="field_mapLink">Map Link</label>
+            <input type="text" class="form-control" name="mapLink" id="field_mapLink"
+                [(ngModel)]="field.mapLink"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="fuscApp.field.owner" for="field_owner">Owner</label>
+            <select class="form-control" id="field_owner" name="owner" [(ngModel)]="field.ownerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="clubOption.id" *ngFor="let clubOption of clubs; trackBy: trackClubById">{{clubOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

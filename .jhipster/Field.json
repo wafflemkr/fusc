@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "owner",
+            "otherEntityName": "club",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fieldName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "80"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "FieldStatusType",
+            "fieldValues": "CLOSED,OPEN,PARTIALLY_OPEN"
+        },
+        {
+            "fieldName": "mapLink",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20170811000838",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "field",
+    "pagination": "pagination"
+}

@@ -1,0 +1,10 @@
+{
+    "fuscApp": {
+        "FieldStatusType" : {
+            "null": "",
+            "CLOSED": "CLOSED",
+            "OPEN": "OPEN",
+            "PARTIALLY_OPEN": "PARTIALLY_OPEN"
+        }
+    }
+}

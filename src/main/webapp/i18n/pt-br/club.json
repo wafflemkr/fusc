@@ -1,0 +1,22 @@
+{
+    "fuscApp": {
+        "club" : {
+            "home": {
+                "title": "Clubs",
+                "createLabel": "Criar novo Club",
+                "createOrEditLabel": "Criar ou editar Club"
+            },
+            "created": "Um novo Club foi criado com o identificador {{ param }}",
+            "updated": "Um Club foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Club foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Club {{ id }}?"
+            },
+            "detail": {
+                "title": "Club"
+            },
+            "clubName": "Club Name",
+            "link": "Link"
+        }
+    }
+}

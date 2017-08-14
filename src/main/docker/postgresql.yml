@@ -1,0 +1,11 @@
+version: '2'
+services:
+    fusc-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/fusc/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=fusc
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

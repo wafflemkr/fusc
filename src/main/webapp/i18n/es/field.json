@@ -1,0 +1,24 @@
+{
+    "fuscApp": {
+        "field" : {
+            "home": {
+                "title": "Fields",
+                "createLabel": "Crear nuevo Field",
+                "createOrEditLabel": "Crear o editar Field"
+            },
+            "created": "Un nuevo Field ha sido creado con el identificador {{ param }}",
+            "updated": "Un Field ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Field ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Field {{ id }}?"
+            },
+            "detail": {
+                "title": "Field"
+            },
+            "fieldName": "Field Name",
+            "status": "Status",
+            "mapLink": "Map Link",
+            "owner": "Owner"
+        }
+    }
+}
