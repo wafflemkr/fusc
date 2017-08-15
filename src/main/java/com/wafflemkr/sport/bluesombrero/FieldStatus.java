@@ -1,6 +1,7 @@
 package com.wafflemkr.sport.bluesombrero;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -10,6 +11,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import springfox.documentation.spring.web.json.Json;
 
 
 public class FieldStatus {
@@ -29,7 +35,7 @@ public class FieldStatus {
 		}
 	}
 	
-	public JSONObject getFieldElements(String fieldCSSClass) {
+	public String getFieldElements(String fieldCSSClass) {
 		
 		if (doc == null) {
 			return null;
@@ -45,30 +51,27 @@ public class FieldStatus {
 			String text = element.text();
 			String delim = "Updated:";
 			String[] tokens = text.split(delim);
-			fd.setFieldName(tokens[0]);
-			fd.setUpdated(tokens[1]);
+			fd.setFieldName(tokens[0].trim());
+			fd.setUpdated(tokens[1].trim());
 			if (element.toString().contains("open")) { 
 				fd.setStatus("OPEN");
 			} else if (element.toString().contains("close")) {
 				fd.setStatus("CLOSED");
 			} else if (element.toString().contains("partial")) {
-				fd.setStatus("PARTIALLY");
+				fd.setStatus("PARTIALLY OPEN");
 			}
 			fields.add(fd);
 		}
 		//JSONObject obj = new JSONObject("fields", new JSONArray(fields));
-		JSONObject obj;
-		try {
-			obj = new JSONObject();
-			JSONArray items = new JSONArray(fields);
-			obj.put("fields", items);
-			return obj;
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+//		Gson obj;
+//		obj = new Gson();
+//		
+//		obj.toJson(fields, ArrayList.class);
+//		return obj;
+		Gson gson = new Gson();
+		Type listOfTestObject = new TypeToken<ArrayList<FieldStatusType>>(){}.getType();
+		String s = gson.toJson(fields, listOfTestObject);
+		return s;
 	}
 	
 
